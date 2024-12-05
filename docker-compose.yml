@@ -43,23 +43,23 @@ services:
             - MYSQL_DATABASE=area
             - MYSQL_ROOT_PASSWORD=area
 
-    # frontend:
-    #     build:
-    #         context: frontend
-    #         target: development
+    frontend:
+        build:
+            context: frontend
+            target: development
 
-    #     ports:
-    #         - 3000:3000
-    #     environment:
-    #         - REACT_APP_API_URL=${REACT_APP_API_URL}
-    #     volumes:
-    #         - ./frontend/src:/code/src
-    #         - /code/node_modules
-    #     networks:
-    #         - public
+        ports:
+            - 3000:3000
+        environment:
+            - REACT_APP_API_URL=${REACT_APP_API_URL}
+        volumes:
+            - ./frontend/src:/code/src
+            - /code/node_modules
+        networks:
+            - public
 
-    #     depends_on:
-    #         - backend
+        depends_on:
+            - backend
 
 networks:
     public:
