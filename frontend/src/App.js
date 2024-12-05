@@ -1,13 +1,21 @@
 import React from 'react';
-import LoginPage from './components/LoginPage/LoginPage'; // Importation de la page de connexion
+import HomePage from './pages/Home/HomePages.jsx'
+import LoginPage from './components/LoginPage/LoginPage.js'
+import RegisterPage from './pages/Register/RegisterPage.jsx'
+import PasswordLostPage from './pages/PasswordLost/PasswrodLost.jsx'
 import './App.css'; // Optionnel, pour du style global
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      {/* Affichage de la page de connexion */}
-      <LoginPage />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage/>} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/findpassword" element={<PasswordLostPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+      </Routes>
+    </Router>
   );
 }
 
