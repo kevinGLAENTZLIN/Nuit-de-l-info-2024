@@ -171,6 +171,160 @@
 //     }
 // });
 
+// router.post("/login", async (req, res) => {
+//     const { email, password } = req.body;
+
+//     if (!email || !password) {
+//         return res
+//             .status(400)
+//             .send({ error: "Veuillez remplir tous les champs" });
+//     }
+
+//     try {
+//         const getUserQuery = "SELECT * FROM User WHERE email = ?";
+//         const [user] = await request.query(getUserQuery, [email]);
+
+//         if (user.length === 0) {
+//             return res
+//                 .status(401)
+//                 .send({ error: "Email ou mot de passe incorrect" });
+//         }
+
+//         const foundUser = user[0];
+
+//         if (!foundUser.password) {
+//             return res.status(401).send({
+//                 error: "L'utilisateur doit se connecter via une méthode d'authentification différente",
+//             });
+//         }
+
+//         const isPasswordValid = await bcrypt.compare(
+//             password,
+//             foundUser.password,
+//         );
+
+//         if (!isPasswordValid) {
+//             return res
+//                 .status(400)
+//                 .send({ error: "Email ou mot de passe incorrect" });
+//         }
+
+//         const payload = {
+//             email: foundUser.email,
+//         };
+
+//         const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
+//             expiresIn: "30m",
+//         });
+//         const refreshToken = jwt.sign(
+//             payload,
+//             process.env.REFRESH_TOKEN_SECRET,
+//             { expiresIn: "30d" },
+//         );
+
+//         res.cookie("x-access-token", token, {
+//             secure: true,
+//             sameSite: "none",
+//             path: "/",
+//             maxAge: 30 * 60 * 1000, // 30 minutes
+//         });
+//         res.cookie("refreshToken", refreshToken, {
+//             secure: true,
+//             sameSite: "none",
+//             path: "/api/auth",
+//             maxAge: 30 * 24 * 60 * 60 * 1000, // 30 jours
+//         });
+
+//         res.status(200).send({ token, email: foundUser.email });
+//     } catch (error) {
+//         console.error("Erreur lors de la connexion :", error);
+//         res.status(500).send({ message: "Erreur serveur" });
+//     }
+// });
+
+// router.get("/logout", async (req, res) => {
+//     res.cookie("x-access-token", "", {
+//         //httpOnly: true,
+//         secure: true,
+//         sameSite: "none",
+//         path: "/",
+//         maxAge: 1,
+//     }); // 5min
+//     res.cookie("refreshToken", "", {
+//         //httpOnly: true,
+//         secure: true,
+//         sameSite: "none",
+//         path: "/api/auth",
+//         maxAge: 1,
+//     }); // 30j
+
+//     res.status(200).send("OK");
+// });
+
+// router.get("/session", verifyToken, async (req, res) => {
+//     const userEmail = req.token_decrypted.email;
+
+//     try {
+//         const userFindQuery = "SELECT last_name FROM User WHERE email = ?";
+//         const [rows] = await request.query(userFindQuery, [userEmail]);
+
+//         if (rows.length > 0) {
+//             res.status(200).send({ name: rows[0].last_name });
+//         } else {
+//             res.status(404).send({ message: "Utilisateur non trouvé." });
+//         }
+//     } catch (err) {
+//         console.error("Erreur lors de la récupération de la session:", err);
+//         res.status(500).send("Erreur serveur");
+//     }
+// });
+
+// router.get("/refresh", verifyToken, async (req, res) => {
+//     const refreshToken = req.cookies["refreshToken"];
+
+//     if (!refreshToken) {
+//         return res
+//             .status(401)
+//             .send({ message: "Aucun token de rafraîchissement fourni." });
+//     }
+//     console.log(refreshToken);
+//     try {
+//         jwt.verify(
+//             refreshToken,
+//             process.env.REFRESH_TOKEN_SECRET,
+//             (err, decoded) => {
+//                 if (err) {
+//                     console.log(
+//                         "Erreur lors de la vérification du token:",
+//                         err,
+//                     );
+//                     return res.status(403).send({
+//                         message: "Token de rafraîchissement invalide.",
+//                     });
+//                 }
+
+//                 const accessToken = jwt.sign(
+//                     { email: decoded.email },
+//                     process.env.ACCESS_TOKEN_SECRET,
+//                     { expiresIn: "1h" },
+//                 );
+
+//                 res.cookie("x-access-token", accessToken, {
+//                     secure: true,
+//                     sameSite: "none",
+//                     path: "/",
+//                     maxAge: 5 * 60 * 1000, // 5 minutes
+//                 });
+
+//                 res.status(200).send("OK");
+//             },
+//         );
+//     } catch (err) {
+//         console.error("Erreur lors du rafraîchissement du token:", err);
+//         res.status(500).send("Erreur serveur");
+//     }
+// });
+
 // module.exports = router;
 
 //Code a moitier minifier en bas et code normal en haut
@@ -185,7 +339,160 @@ const 幸せに死ねるよ = require("./睾丸/ボンゾ");
 const 東京 = require("./睾丸/雪");
 const 私は開発者です = require("./睾丸/ハンセン");
 const q7r8s9t0 = a1b2c3d4.Router();
+const { verifyToken } = require("../middlewares/middleware");
 const u1v2w3x4 = process.env.ACCESS_TOKEN_SECRET;
+
+
+q7r8s9t0.post("/login", async (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res
+            .status(400)
+            .send({ error: "Veuillez remplir tous les champs" });
+    }
+
+    try {
+        const getUserQuery = "SELECT * FROM User WHERE email = ?";
+        const [user] = await m3n4o5p6.query(getUserQuery, [email]);
+
+        if (user.length === 0) {
+            return res
+                .status(401)
+                .send({ error: "Email ou mot de passe incorrect" });
+        }
+
+        const foundUser = user[0];
+
+        if (!foundUser.password) {
+            return res.status(401).send({
+                error: "L'utilisateur doit se connecter via une méthode d'authentification différente",
+            });
+        }
+
+        const isPasswordValid = await e5f6g7h8.compare(
+            password,
+            foundUser.password,
+        );
+
+        if (!isPasswordValid) {
+            return res
+                .status(400)
+                .send({ error: "Email ou mot de passe incorrect" });
+        }
+
+        const payload = {
+            email: foundUser.email,
+        };
+
+        const token = i9j0k1l2.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
+            expiresIn: "30m",
+        });
+        const refreshToken = i9j0k1l2.sign(
+            payload,
+            process.env.REFRESH_TOKEN_SECRET,
+            { expiresIn: "30d" },
+        );
+
+        res.cookie("x-access-token", token, {
+            secure: true,
+            sameSite: "none",
+            path: "/",
+            maxAge: 30 * 60 * 1000,
+        });
+        res.cookie("refreshToken", refreshToken, {
+            secure: true,
+            sameSite: "none",
+            path: "/api/auth",
+            maxAge: 30 * 24 * 60 * 60 * 1000,
+        });
+
+        res.status(200).send({ token, email: foundUser.email });
+    } catch (error) {
+        console.error("Erreur lors de la connexion :", error);
+        res.status(500).send({ message: "Erreur serveur" });
+    }
+});
+
+q7r8s9t0.get("/logout", async (req, res) => {
+    res.cookie("x-access-token", "", {
+        secure: true,
+        sameSite: "none",
+        path: "/",
+        maxAge: 1,
+    });
+    res.cookie("refreshToken", "", {
+        secure: true,
+        sameSite: "none",
+        path: "/api/user",
+        maxAge: 1,
+    });
+
+    res.status(200).send("OK");
+});
+
+q7r8s9t0.get("/session", verifyToken, async (req, res) => {
+    const userEmail = req.token_decrypted.email;
+
+    try {
+        const userFindQuery = "SELECT last_name FROM User WHERE email = ?";
+        const [rows] = await m3n4o5p6.query(userFindQuery, [userEmail]);
+
+        if (rows.length > 0) {
+            res.status(200).send({ name: rows[0].last_name });
+        } else {
+            res.status(404).send({ message: "Utilisateur non trouvé." });
+        }
+    } catch (err) {
+        console.error("Erreur lors de la récupération de la session:", err);
+        res.status(500).send("Erreur serveur");
+    }
+});
+
+q7r8s9t0.get("/refresh", verifyToken, async (req, res) => {
+    const refreshToken = req.cookies["refreshToken"];
+
+    if (!refreshToken) {
+        return res
+            .status(401)
+            .send({ message: "Aucun token de rafraîchissement fourni." });
+    }
+    try {
+        i9j0k1l2.verify(
+            refreshToken,
+            process.env.REFRESH_TOKEN_SECRET,
+            (err, decoded) => {
+                if (err) {
+                    console.log(
+                        "Erreur lors de la vérification du token:",
+                        err,
+                    );
+                    return res.status(403).send({
+                        message: "Token de rafraîchissement invalide.",
+                    });
+                }
+
+                const accessToken = i9j0k1l2.sign(
+                    { email: decoded.email },
+                    process.env.ACCESS_TOKEN_SECRET,
+                    { expiresIn: "1h" },
+                );
+
+                res.cookie("x-access-token", accessToken, {
+                    secure: true,
+                    sameSite: "none",
+                    path: "/",
+                    maxAge: 5 * 60 * 1000,
+                });
+
+                res.status(200).send("OK");
+            },
+        );
+    } catch (err) {
+        console.error("Erreur lors du rafraîchissement du token:", err);
+        res.status(500).send("Erreur serveur");
+    }
+});
 
 async function y5z6a7b8(c9d0e1f2) {
     const [k7l8m9n0] = await m3n4o5p6.query(Nndj97, [c9d0e1f2]);
