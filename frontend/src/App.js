@@ -1,6 +1,6 @@
 import React from 'react';
 import HomePage from './pages/Home/HomePages.jsx'
-import LoginPage from './components/LoginPage/LoginPage.js'
+import LoginPage from './pages/Login/Login.jsx'
 import RegisterPage from './pages/Register/RegisterPage.jsx'
 import PasswordLostPage from './pages/PasswordLost/PasswrodLost.jsx'
 import './App.css'; // Optionnel, pour du style global

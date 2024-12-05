@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import './FloatingElement.css';
 
-const FloatingElement = ({ placeholder, type = 'text' }) => {
+const FloatingElement = ({ child }) => {
   const [inputValue, setInputValue] = useState('');
 
   // Fonction pour calculer la descente en fonction de la longueur du texte
@@ -31,12 +31,7 @@ const FloatingElement = ({ placeholder, type = 'text' }) => {
         : floatingAnimation.transition
       }
     >
-      <input
-        type={type}
-        placeholder={placeholder}
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-      />
+      {child}
     </motion.div>
   );
 };
