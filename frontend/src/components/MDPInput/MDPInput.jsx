@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import './MDPInput.css';
 
-const MDPInput = ({ placeholder }) => {
+const MDPInput = ({ placeholder, inputValue, setInputValue }) => {
     const [isPasswordVisible, setPasswordVisible] = useState(false);
-    const [inputValue, setInputValue] = useState('');
 
     const handleInputChange = (e) => {
         if (e.target.value.length === 0) {
