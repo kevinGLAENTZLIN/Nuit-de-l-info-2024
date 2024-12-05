@@ -171,158 +171,73 @@
 //     }
 // });
 
-// router.post("/login", async (req, res) => {
+// q7r8s9t0.post("/login", async (req, res) => {
 //     const { email, password } = req.body;
 
 //     if (!email || !password) {
 //         return res
-//             .status(400)
-//             .send({ error: "Veuillez remplir tous les champs" });
+//             .status(418)
+//             .send({ error: "I'm a teapot" });
 //     }
 
 //     try {
-//         const getUserQuery = "SELECT * FROM User WHERE email = ?";
-//         const [user] = await request.query(getUserQuery, [email]);
+//         const [user] = await m3n4o5p6.query(Nndj97, [email]);
 
 //         if (user.length === 0) {
 //             return res
-//                 .status(401)
-//                 .send({ error: "Email ou mot de passe incorrect" });
+//                 .status(418)
+//                 .send({ error: "I'm a teapot" });
 //         }
 
 //         const foundUser = user[0];
 
 //         if (!foundUser.password) {
-//             return res.status(401).send({
-//                 error: "L'utilisateur doit se connecter via une méthode d'authentification différente",
+//             return res.status(418).send({
+//                 error: "I'm a teapot",
 //             });
 //         }
 
-//         const isPasswordValid = await bcrypt.compare(
+//         const isPasswordValid = await e5f6g7h8.compare(
 //             password,
 //             foundUser.password,
 //         );
 
 //         if (!isPasswordValid) {
 //             return res
-//                 .status(400)
-//                 .send({ error: "Email ou mot de passe incorrect" });
+//                 .status(418)
+//                 .send({ error: "I'm a teapot" });
 //         }
 
 //         const payload = {
+//             id: foundUser.id,
 //             email: foundUser.email,
 //         };
 
-//         const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
+//         const token = i9j0k1l2.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
 //             expiresIn: "30m",
 //         });
-//         const refreshToken = jwt.sign(
-//             payload,
-//             process.env.REFRESH_TOKEN_SECRET,
-//             { expiresIn: "30d" },
-//         );
 
 //         res.cookie("x-access-token", token, {
 //             secure: true,
 //             sameSite: "none",
 //             path: "/",
-//             maxAge: 30 * 60 * 1000, // 30 minutes
-//         });
-//         res.cookie("refreshToken", refreshToken, {
-//             secure: true,
-//             sameSite: "none",
-//             path: "/api/auth",
-//             maxAge: 30 * 24 * 60 * 60 * 1000, // 30 jours
+//             maxAge: 30 * 60 * 1000,
 //         });
 
 //         res.status(200).send({ token, email: foundUser.email });
 //     } catch (error) {
-//         console.error("Erreur lors de la connexion :", error);
-//         res.status(500).send({ message: "Erreur serveur" });
+//         res.status(500).send({ message: "OK" });
 //     }
 // });
 
-// router.get("/logout", async (req, res) => {
+// q7r8s9t0.get("/logout", async (req, res) => {
 //     res.cookie("x-access-token", "", {
-//         //httpOnly: true,
 //         secure: true,
 //         sameSite: "none",
 //         path: "/",
 //         maxAge: 1,
-//     }); // 5min
-//     res.cookie("refreshToken", "", {
-//         //httpOnly: true,
-//         secure: true,
-//         sameSite: "none",
-//         path: "/api/auth",
-//         maxAge: 1,
-//     }); // 30j
-
+//     });
 //     res.status(200).send("OK");
-// });
-
-// router.get("/session", verifyToken, async (req, res) => {
-//     const userEmail = req.token_decrypted.email;
-
-//     try {
-//         const userFindQuery = "SELECT last_name FROM User WHERE email = ?";
-//         const [rows] = await request.query(userFindQuery, [userEmail]);
-
-//         if (rows.length > 0) {
-//             res.status(200).send({ name: rows[0].last_name });
-//         } else {
-//             res.status(404).send({ message: "Utilisateur non trouvé." });
-//         }
-//     } catch (err) {
-//         console.error("Erreur lors de la récupération de la session:", err);
-//         res.status(500).send("Erreur serveur");
-//     }
-// });
-
-// router.get("/refresh", verifyToken, async (req, res) => {
-//     const refreshToken = req.cookies["refreshToken"];
-
-//     if (!refreshToken) {
-//         return res
-//             .status(401)
-//             .send({ message: "Aucun token de rafraîchissement fourni." });
-//     }
-//     console.log(refreshToken);
-//     try {
-//         jwt.verify(
-//             refreshToken,
-//             process.env.REFRESH_TOKEN_SECRET,
-//             (err, decoded) => {
-//                 if (err) {
-//                     console.log(
-//                         "Erreur lors de la vérification du token:",
-//                         err,
-//                     );
-//                     return res.status(403).send({
-//                         message: "Token de rafraîchissement invalide.",
-//                     });
-//                 }
-
-//                 const accessToken = jwt.sign(
-//                     { email: decoded.email },
-//                     process.env.ACCESS_TOKEN_SECRET,
-//                     { expiresIn: "1h" },
-//                 );
-
-//                 res.cookie("x-access-token", accessToken, {
-//                     secure: true,
-//                     sameSite: "none",
-//                     path: "/",
-//                     maxAge: 5 * 60 * 1000, // 5 minutes
-//                 });
-
-//                 res.status(200).send("OK");
-//             },
-//         );
-//     } catch (err) {
-//         console.error("Erreur lors du rafraîchissement du token:", err);
-//         res.status(500).send("Erreur serveur");
-//     }
 // });
 
 // module.exports = router;
@@ -339,159 +254,75 @@ const 幸せに死ねるよ = require("./睾丸/ボンゾ");
 const 東京 = require("./睾丸/雪");
 const 私は開発者です = require("./睾丸/ハンセン");
 const q7r8s9t0 = a1b2c3d4.Router();
-const { verifyToken } = require("../middlewares/middleware");
 const u1v2w3x4 = process.env.ACCESS_TOKEN_SECRET;
 
+q7r8s9t0.post("/login", async (a1b2c3d4, ç87552H3J) => {
+    const { email: lodduc23dj, password: u1v2w3x4 } = a1b2c3d4.body;
 
-q7r8s9t0.post("/login", async (req, res) => {
-    const { email, password } = req.body;
-
-    if (!email || !password) {
-        return res
-            .status(400)
-            .send({ error: "Veuillez remplir tous les champs" });
+    if (!lodduc23dj || !u1v2w3x4) {
+        return ç87552H3J
+            .status(418)
+            .send({ a7b8c9d0: "I'm a teapot" });
     }
 
     try {
-        const getUserQuery = "SELECT * FROM User WHERE email = ?";
-        const [user] = await m3n4o5p6.query(getUserQuery, [email]);
+        const [ndieifh] = await m3n4o5p6.query(Nndj97, [lodduc23dj]);
 
-        if (user.length === 0) {
-            return res
-                .status(401)
-                .send({ error: "Email ou mot de passe incorrect" });
+        if (ndieifh.length === 0) {
+            return ç87552H3J
+                .status(418)
+                .send({ e1f2g3h4: "I'm a teapot" });
         }
 
-        const foundUser = user[0];
+        const t5u6v7w8 = ndieifh[0];
 
-        if (!foundUser.password) {
-            return res.status(401).send({
-                error: "L'utilisateur doit se connecter via une méthode d'authentification différente",
+        if (!t5u6v7w8.password) {
+            return ç87552H3J.status(418).send({
+                b3c4d5e6: "I'm a teapot",
             });
         }
 
-        const isPasswordValid = await e5f6g7h8.compare(
-            password,
-            foundUser.password,
+        const f7g8h9i0 = await e5f6g7h8.compare(
+            u1v2w3x4,
+            t5u6v7w8.password,
         );
 
-        if (!isPasswordValid) {
-            return res
-                .status(400)
-                .send({ error: "Email ou mot de passe incorrect" });
+        if (!f7g8h9i0) {
+            return ç87552H3J
+                .status(418)
+                .send({ j1k2l3m4: "I'm a teapot" });
         }
 
-        const payload = {
-            email: foundUser.email,
+        const n5o6p7q8 = {
+            x6y7z8a9: t5u6v7w8.id,
+            d9e0f1g2: t5u6v7w8.email,
         };
 
-        const token = i9j0k1l2.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
+        const o1p2q3r4 = i9j0k1l2.sign(n5o6p7q8, process.env.ACCESS_TOKEN_SECRET, {
             expiresIn: "30m",
         });
-        const refreshToken = i9j0k1l2.sign(
-            payload,
-            process.env.REFRESH_TOKEN_SECRET,
-            { expiresIn: "30d" },
-        );
 
-        res.cookie("x-access-token", token, {
+        ç87552H3J.cookie("x-access-token", o1p2q3r4, {
             secure: true,
             sameSite: "none",
             path: "/",
             maxAge: 30 * 60 * 1000,
         });
-        res.cookie("refreshToken", refreshToken, {
-            secure: true,
-            sameSite: "none",
-            path: "/api/auth",
-            maxAge: 30 * 24 * 60 * 60 * 1000,
-        });
 
-        res.status(200).send({ token, email: foundUser.email });
-    } catch (error) {
-        console.error("Erreur lors de la connexion :", error);
-        res.status(500).send({ message: "Erreur serveur" });
+        ç87552H3J.status(200).send({ o1p2q3r4, z3a4b5c6: t5u6v7w8.email });
+    } catch (b0c1d2e3) {
+        ç87552H3J.status(500).send({ g7h8i9j0: "OK" });
     }
 });
 
-q7r8s9t0.get("/logout", async (req, res) => {
-    res.cookie("x-access-token", "", {
+q7r8s9t0.get("/logout", async (e1f2g3h4, k1l2m3n4) => {
+    k1l2m3n4.cookie("x-access-token", "", {
         secure: true,
         sameSite: "none",
         path: "/",
         maxAge: 1,
     });
-    res.cookie("refreshToken", "", {
-        secure: true,
-        sameSite: "none",
-        path: "/api/user",
-        maxAge: 1,
-    });
-
-    res.status(200).send("OK");
-});
-
-q7r8s9t0.get("/session", verifyToken, async (req, res) => {
-    const userEmail = req.token_decrypted.email;
-
-    try {
-        const userFindQuery = "SELECT last_name FROM User WHERE email = ?";
-        const [rows] = await m3n4o5p6.query(userFindQuery, [userEmail]);
-
-        if (rows.length > 0) {
-            res.status(200).send({ name: rows[0].last_name });
-        } else {
-            res.status(404).send({ message: "Utilisateur non trouvé." });
-        }
-    } catch (err) {
-        console.error("Erreur lors de la récupération de la session:", err);
-        res.status(500).send("Erreur serveur");
-    }
-});
-
-q7r8s9t0.get("/refresh", verifyToken, async (req, res) => {
-    const refreshToken = req.cookies["refreshToken"];
-
-    if (!refreshToken) {
-        return res
-            .status(401)
-            .send({ message: "Aucun token de rafraîchissement fourni." });
-    }
-    try {
-        i9j0k1l2.verify(
-            refreshToken,
-            process.env.REFRESH_TOKEN_SECRET,
-            (err, decoded) => {
-                if (err) {
-                    console.log(
-                        "Erreur lors de la vérification du token:",
-                        err,
-                    );
-                    return res.status(403).send({
-                        message: "Token de rafraîchissement invalide.",
-                    });
-                }
-
-                const accessToken = i9j0k1l2.sign(
-                    { email: decoded.email },
-                    process.env.ACCESS_TOKEN_SECRET,
-                    { expiresIn: "1h" },
-                );
-
-                res.cookie("x-access-token", accessToken, {
-                    secure: true,
-                    sameSite: "none",
-                    path: "/",
-                    maxAge: 5 * 60 * 1000,
-                });
-
-                res.status(200).send("OK");
-            },
-        );
-    } catch (err) {
-        console.error("Erreur lors du rafraîchissement du token:", err);
-        res.status(500).send("Erreur serveur");
-    }
+    k1l2m3n4.status(200).send("OK");
 });
 
 async function y5z6a7b8(c9d0e1f2) {
@@ -531,20 +362,20 @@ q7r8s9t0.post("/r", async (k4l5m6n7, o8p9q0r1) => {
             username: a0b1c2d3,
         } = k4l5m6n7.body;
         if (!s2t3u4v5 || !w6x7y8z9 || !a0b1c2d3)
-            return o8p9q0r1.status(400).json({ e4f5g6: "Missing!" });
+            return o8p9q0r1.status(418).json({ e4f5g6: "I'm a teapot" });
 
         const h7i8j9k0 = await y5z6a7b8(s2t3u4v5);
         if (h7i8j9k0)
             return o8p9q0r1
-                .status(400)
-                .json({ l1m2n3: "User with email exists" });
+                .status(418)
+                .json({ l1m2n3: "I'm a teapot" });
 
         const o4p5q6r7 = await y2z3a4b5();
         for (const s8t9u0 of o4p5q6r7) {
             if (await e5f6g7h8.compare(w6x7y8z9, s8t9u0.password)) {
                 return o8p9q0r1
-                    .status(400)
-                    .json({ v1w2x3: "Password exists", email: s8t9u0.email });
+                    .status(418)
+                    .json({ v1w2x3: "I'm a teapot", email: s8t9u0.email });
             }
         }
 
@@ -561,7 +392,7 @@ q7r8s9t0.post("/r", async (k4l5m6n7, o8p9q0r1) => {
         });
         o8p9q0r1.status(201).json({ token: g2h3i4j5 });
     } catch (k6l7m8n9) {
-        o8p9q0r1.status(500).json({ error: k6l7m8n9.message });
+        o8p9q0r1.status(500).send("OK");
     }
 });
 
@@ -574,7 +405,7 @@ q7r8s9t0.get("/u", async (m4n5o6p7, q8r9s0t1) => {
         }));
         q8r9s0t1.status(200).json({ users: u2v3w4x5 });
     } catch (c0d1e2f3) {
-        q8r9s0t1.status(500).json({ error: c0d1e2f3.message });
+        q8r9s0t1.status(500).send("OK");
     }
 });
 
@@ -585,10 +416,10 @@ q7r8s9t0.put("/up", async (g4h5i6j7, k8l9m0n1) => {
             password: s6t7u8v9,
             username: w0x1y2z3,
         } = g4h5i6j7.body;
-        if (!o2p3q4r5) return k8l9m0n1.status(400).json({ error: "No email!" });
+        if (!o2p3q4r5) return k8l9m0n1.status(418).json({ error: "I'm a teapot" });
 
         const a4b5c6d7 = await y5z6a7b8(o2p3q4r5);
-        if (!a4b5c6d7) return k8l9m0n1.status(404).json({ error: "No user" });
+        if (!a4b5c6d7) return k8l9m0n1.status(418).json({ error: "I'm a teapot" });
 
         let e8f9g0h1 = a4b5c6d7.password;
         if (s6t7u8v9)
@@ -603,21 +434,21 @@ q7r8s9t0.put("/up", async (g4h5i6j7, k8l9m0n1) => {
         });
         k8l9m0n1.status(200).json({ message: "Ok" });
     } catch (i2j3k4l5) {
-        k8l9m0n1.status(500).json({ error: i2j3k4l5.message });
+        k8l9m0n1.status(500).send("OK");
     }
 });
 
 q7r8s9t0.delete("/d", async (m2n3o4p5, q6r7s8t9) => {
     try {
         const { email: u0v1w2x3 } = m2n3o4p5.body;
-        if (!u0v1w2x3) return q6r7s8t9.status(400).json({ error: "No email!" });
+        if (!u0v1w2x3) return q6r7s8t9.status(418).json({ error: "I'm a teapot" });
 
         if (!(await y5z6a7b8(u0v1w2x3)))
-            return q6r7s8t9.status(404).json({ error: "No user" });
+            return q6r7s8t9.status(418).json({ error: "I'm a teapot" });
         await m0n1o2p3(u0v1w2x3);
         q6r7s8t9.status(204).send();
     } catch (y4z5a6b7) {
-        q6r7s8t9.status(500).json({ error: y4z5a6b7.message });
+        q6r7s8t9.status(500).send("OK");
     }
 });
 
@@ -631,7 +462,7 @@ q7r8s9t0.get("/g", async (e8f9g0h1, i2j3k4l5) => {
         }));
         i2j3k4l5.status(200).json({ users: c6d7e8f9 });
     } catch (d7e8f9a1) {
-        i2j3k4l5.status(500).json({ message: d7e8f9a1.message });
+        i2j3k4l5.status(500).send("OK");
     }
 });
 
