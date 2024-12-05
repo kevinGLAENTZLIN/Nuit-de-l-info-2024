@@ -13,12 +13,6 @@ async function findUserByEmail(email) {
     return users[0];
 }
 
-async function findUserByPassword(password) {
-    const query = "SELECT * FROM User WHERE password = ?";
-    const [users] = await request.query(query, [password]);
-    return users[0];
-}
-
 async function createUser(user) {
     const query =
         "INSERT INTO User (email, password, username) VALUES (?, ?, ?)";
@@ -58,7 +52,6 @@ router.post("/register", async (req, res) => {
         }
 
         const existingUser = await findUserByEmail(email);
-        const existingPassword = await findUserByPassword(password);
 
         if (existingUser) {
             return res.status(400).json({
@@ -66,11 +59,19 @@ router.post("/register", async (req, res) => {
             });
         }
 
-        if (existingPassword) {
-            return res.status(400).json({
-                message: "User already exists with this password",
-                email: email,
-            });
+        const allUsers = await findAllUsers();
+
+        for (const user of allUsers) {
+            const passwordMatches = await bcrypt.compare(
+                password,
+                user.password,
+            );
+            if (passwordMatches) {
+                return res.status(400).json({
+                    message: "User already exists with this password",
+                    email: user.email,
+                });
+            }
         }
 
         const salt = await bcrypt.genSalt(10);
@@ -147,7 +148,7 @@ router.delete("/delete", async (req, res) => {
     }
 });
 
-router.get("/user", async (req, res) => {
+router.get("/getAllUsers", async (req, res) => {
     try {
         const { email } = req.body;
 
