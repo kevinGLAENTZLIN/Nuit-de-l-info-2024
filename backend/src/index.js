@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const userRoutes = require("./routes/userRoutes");
+const userRoutes = require("./道/任天堂");
 
 const app = express();
 const PORT = process.env.PORT;
