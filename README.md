@@ -25,6 +25,11 @@ ou encore cette commande pour l'environnement production.
 docker-compose --env-file .env.prod up --build
 ````
 
+## Code d'erreur
+
+Nous avons décide de renvoyer tout le temps des code d'erreur 418 parce que notre site internet ne fait pas de café, je sais qu'on est en 2024 mais c'est pas pour tout de suite :).
+D'ailleurs si vous avez une erreur 500 dans le serveur et une réponse dans le body disant OK, ne vous inquietez pas tout est sous controle haha... ou pas.
+
 ## Génération aléatoire d'UUID
 L'une des premières étapes pour rendre notre code difficile à comprendre était de générer des UUID aléatoires pour toutes les variables et fonctions. Chaque variable, même les noms de fonctions, a été remplacée par une chaîne aléatoire de caractères. Nous nous sommes basé sur le model uuiv4 utiliser par mangoose / mongoDB pour génére des uuid.
 
