@@ -48,19 +48,19 @@ const DateOfBirthGuess = () => {
             {correctDateFound === false ? (
                 <div>
                     <h3>Date proposée : {guess.toDateString()}</h3>
-                    <button
+                    <button type="button"
                         onClick={() => handleResponse('older')}
                         style={{ fontSize: '30px', padding: '20px', margin: '10px' }}
                     >
                         👴
                     </button>
-                    <button
+                    <button type="button"
                         onClick={() => handleResponse('younger')}
                         style={{ fontSize: '30px', padding: '20px', margin: '10px' }}
                     >
                         🧑
                     </button>
-                    <button
+                    <button type="button"
                         onClick={() => handleResponse('correct')}
                         style={{ fontSize: '30px', padding: '20px', margin: '10px' }}
                     >
@@ -68,7 +68,7 @@ const DateOfBirthGuess = () => {
                     </button>
                 </div>
             ) : null}
-                <button
+                <button type="button"
                     onClick={handleReset}
                     style={{ fontSize: '20px', padding: '15px', marginTop: '20px' }}
                 >

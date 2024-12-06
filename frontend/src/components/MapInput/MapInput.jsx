@@ -11,7 +11,7 @@ const MapInput = ({ placeholder, inputValue, setInputValue }) => {
     const handleClick = (e) => {
         const { lat, lng } = e.latlng;
         setSelectedPosition({ lat, lng });
-        setInputValue(`Address: Lat: ${lat}\nLng: ${lng}`);
+        setInputValue(`Votre address: Lat: ${lat}\nLng: ${lng}`);
     };
 
     const MapClick = () => {

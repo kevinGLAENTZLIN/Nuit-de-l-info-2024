@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import './FloatingElement.css';
 
-const FloatingElement = ({ children, multiplicator = 30 }) => {
-  const [inputValue, setInputValue] = useState('');
+const FloatingElement = ({ children, multiplicator = 30, inputValue }) => {
   const [horizontalMovement, setHorizontalMovement] = useState(0);
 
   const calculateDrop = (inputLength) => inputLength * multiplicator;
@@ -34,7 +33,7 @@ const FloatingElement = ({ children, multiplicator = 30 }) => {
         },
       }}
     >
-      {React.cloneElement(children, { inputValue, setInputValue })}
+      { children }
       </motion.div>
   );
 };

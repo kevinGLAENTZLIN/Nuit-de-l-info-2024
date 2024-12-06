@@ -6,12 +6,12 @@
 }
 
 .captcha-box {
-    border: 2px solid black; /* Bordure noire */
+    border: 2px solid black;
     width: 500px;
     height: 500px;
     position: relative;
-    overflow: hidden; /* Confinement des images */
-    background-color: black; /* Fond noir */
+    overflow: hidden;
+    background-color: black;
 }
 
 .target-container {
@@ -36,7 +36,7 @@
     width: 50px;
     height: 50px;
     cursor: pointer;
-    transition: transform 0.2s linear; /* Transition CSS pour fluidité */
+    transition: transform 0.2s linear;
 }
 
 .character-image {
