@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import FloatingElement from '../../components/FloatingElement/FloatingElement';
 import MDPInput from '../../components/MDPInput/MDPInput';
-import ReverseInput from '../../components/ReverseInput/ReverseInput';
+import EMailInput from "../../components/EMailInput/EMailInput";
 import './Login.css';
+
 const API_URL = process.env.REACT_APP_API_URL;
 
 const Login = () => {
@@ -39,7 +40,7 @@ const Login = () => {
     <div className="login-container">
       <form onSubmit={handleSubmit}>
         <FloatingElement inputValue={email}>
-            <ReverseInput placeholder="Email" inputValue={email} setInputValue={setEmail} />
+            <EMailInput placeholder="Email" inputValue={email} setInputValue={setEmail} />
         </FloatingElement>
         <FloatingElement inputValue={password}>
             <MDPInput placeholder="Mot de passe" inputValue={password} setInputValue={setPassword}/>

@@ -1,0 +1,71 @@
+/* Wrap both input and T9 keyboard together */
+.t9-input-container {
+  display: flex;
+  flex-direction: column; /* Stack the input field and keyboard vertically */
+  align-items: flex-start; /* Align to the left by default */
+  width: 100%; /* Make sure the container stretches across the full width */
+  padding: 10px 0;
+}
+
+/* Input field styles */
+.t9-display {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: left;
+  font-size: 1.5rem;
+  background-color: #f9f9f9;
+  margin-bottom: 1rem;
+  margin-left: -8px;
+}
+
+.placeholder {
+  color: #aaa;
+}
+
+/* Keyboard layout */
+.t9-keyboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 300px;
+  margin-left: -2px;
+}
+
+/* Individual key button styles */
+.t9-key {
+  padding: 1rem;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 6px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.t9-key:hover {
+  background-color: #d0d0d0;
+}
+
+/* Special key styles */
+.reset, .delete, .submit {
+  width: 100%;
+}
+
+.delete {
+  background-color: #f8d7da;
+}
+
+.submit {
+  background-color: #d4edda;
+}
+
+.delete:hover {
+  background-color: #f5c6cb;
+}
+
+.submit:hover {
+  background-color: #c3e6cb;
+}
