@@ -8,14 +8,20 @@ import yoshi from "../../assets/sm64ds_yoshi.png";
 import luigi from "../../assets/sm64ds_luigi.png";
 import wario from "../../assets/sm64ds_wario.png";
 
-const characters = [mario, luigi, yoshi, wario];
+import mario_to_find from "../../assets/sm64ds_mario_to_find.png";
+import yoshi_to_find from "../../assets/sm64ds_yoshi_to_find.png";
+import luigi_to_find from "../../assets/sm64ds_luigi_to_find.png";
+import wario_to_find from "../../assets/sm64ds_wario_to_find.png";
 
-const getRandomCharacter = () => {
-    return characters[Math.floor(Math.random() * characters.length)];
+const characters = [mario, luigi, yoshi, wario];
+const characters_to_find = [mario_to_find, luigi_to_find, yoshi_to_find, wario_to_find];
+
+const getRandomCharacterToFind = () => {
+    return Math.floor(Math.random() * characters.length);
 };
 
-const getCharacterToSpawn = (characterToFind) => {
-    const tmp = getRandomCharacter();
+const getRandomCharacterToSpawn = (characterToFind) => {
+    const tmp = characters[Math.floor(Math.random() * characters.length)];;
 
     if (Math.random() < 0.5) {
         if (characterToFind === mario && tmp !== wario) return wario;
@@ -26,7 +32,7 @@ const getCharacterToSpawn = (characterToFind) => {
 
     if (tmp !== characterToFind) return tmp;
 
-    return getCharacterToSpawn(characterToFind);
+    return getRandomCharacterToSpawn(characterToFind);
 };
 
 
@@ -56,22 +62,22 @@ const moveCharacters = (positions) => {
 };
 
 const CaptchaPage = () => {
-    const [targetCharacter, setTargetCharacter] = useState(getRandomCharacter());
+    const [targetCharacter, setTargetCharacter] = useState(getRandomCharacterToFind());
     const [grid, setGrid] = useState([]);
     const [success, setSuccess] = useState(false);
 
     useEffect(() => {
-        const newGrid = [targetCharacter];
+        const newGrid = [characters[targetCharacter]];
         
         for (let i = 0; i < 70; i++) {
-            newGrid.push(getCharacterToSpawn(targetCharacter));
+            newGrid.push(getRandomCharacterToSpawn(characters[targetCharacter]));
         }
         setGrid(shuffleArray(newGrid));
-    }, [targetCharacter]);
+    }, [characters[targetCharacter]]);
     
 
     const handleCharacterClick = (character) => {
-        if (character === targetCharacter) {
+        if (character === characters[targetCharacter]) {
             setSuccess(true);
         }
     };
@@ -107,7 +113,7 @@ const CaptchaPage = () => {
                     <div className="target-container">
                         <p>Find and click the target character:</p>
                         <img 
-                            src={targetCharacter} 
+                            src={characters_to_find[targetCharacter]} 
                             alt="target character"
                             className="target-image"
                         />
