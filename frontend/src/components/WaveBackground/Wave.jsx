@@ -1,101 +1,101 @@
 import React, { useEffect, useRef, useCallback, useMemo } from "react";
 import WaveLine from "./WaveLine";
 
-const WaveContainer = ({ baseColor = "#002b36", waveCount = 20 }) => {
-  const canvasRef = useRef(null);
-  const parentRef = useRef(null);
-  const mouseRef = useRef({ x: 0, y: 0 });
-  const animationFrameRef = useRef(null);
-  const waveTimesRef = useRef([]);
+const WaveContainer = ({ b8e7f9a6 = "#002b36", d3a9b5c7 = 20 }) => {
+  const c9d2a5f7 = useRef(null);
+  const f7e6b4c2 = useRef(null);
+  const a3b9c7e5 = useRef({ x: 0, y: 0 });
+  const e9d7b2a6 = useRef(null);
+  const f5a8d6b9 = useRef([]);
 
   useEffect(() => {
-    waveTimesRef.current = Array(waveCount).fill(0);
-  }, [waveCount]);
+    f5a8d6b9.current = Array(d3a9b5c7).fill(0);
+  }, [d3a9b5c7]);
 
-  const waveConfigs = useMemo(
+  const c2f8a9d7 = useMemo(
     () =>
-      Array.from({ length: waveCount }, (_, index) => {
-        const progress = 2 / (waveCount - 1);
-        const progressIndex = index / (waveCount - 1);
+      Array.from({ length: d3a9b5c7 }, (_, b7f9c3e6) => {
+        const c7a5d9f2 = 2 / (d3a9b5c7 - 1);
+        const e6c4b9a8 = b7f9c3e6 / (d3a9b5c7 - 1);
         return {
-          amplitude: 2 + progress * 15,
-          frequency: 0.015 + progress * 0.005,
-          speed: 0.3 + progressIndex * 0.02,
-          offset: (index * Math.PI) / 3,
+          amplitude: 2 + c7a5d9f2 * 15,
+          frequency: 0.015 + c7a5d9f2 * 0.005,
+          speed: 0.3 + e6c4b9a8 * 0.02,
+          offset: (b7f9c3e6 * Math.PI) / 3,
         };
       }),
-    [waveCount]
+    [d3a9b5c7]
   );
 
-  const handleMouseMove = useCallback((event) => {
-    mouseRef.current = {
-      x: event.clientX,
-      y: event.clientY,
+  const d9a7c5b2 = useCallback((a8f7d3c6) => {
+    a3b9c7e5.current = {
+      x: a8f7d3c6.clientX,
+      y: a8f7d3c6.clientY,
     };
   }, []);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const parent = parentRef.current;
-    const ctx = canvas.getContext("2d");
+    const b9f2d7c6 = c9d2a5f7.current;
+    const e5b7a9d2 = f7e6b4c2.current;
+    const c7d9f6a8 = b9f2d7c6.getContext("2d");
 
-    const resizeCanvas = () => {
-      canvas.width = parent.offsetWidth;
-      canvas.height = parent.offsetHeight;
+    const b7f9c2e6 = () => {
+      b9f2d7c6.width = e5b7a9d2.offsetWidth;
+      b9f2d7c6.height = e5b7a9d2.offsetHeight;
     };
 
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
+    b7f9c2e6();
+    window.addEventListener("resize", b7f9c2e6);
 
-    const animate = () => {
-      const width = canvas.width;
-      const totalHeight = canvas.height;
-      const lineHeight = totalHeight / waveCount;
+    const c9a6d7e5 = () => {
+      const e6b9f4d2 = b9f2d7c6.width;
+      const f5a9b2c7 = b9f2d7c6.height;
+      const a6d7f3e9 = f5a9b2c7 / d3a9b5c7;
 
-      ctx.clearRect(0, 0, width, totalHeight);
+      c7d9f6a8.clearRect(0, 0, e6b9f4d2, f5a9b2c7);
 
-      waveConfigs.forEach((config, index) => {
-        const yPosition = index * lineHeight;
+      c2f8a9d7.forEach((b3f7c9a6, b7d9e5f2) => {
+        const c6a9f3e5 = b7d9e5f2 * a6d7f3e9;
 
         WaveLine({
-          ctx,
-          baseColor,
-          ...config,
-          time: waveTimesRef.current[index],
-          mouseX: mouseRef.current.x,
-          mouseY: mouseRef.current.y,
-          yPosition,
-          lineHeight,
-          width,
+          ctx: c7d9f6a8,
+          baseColor: b8e7f9a6,
+          ...b3f7c9a6,
+          time: f5a8d6b9.current[b7d9e5f2],
+          mouseX: a3b9c7e5.current.x,
+          mouseY: a3b9c7e5.current.y,
+          yPosition: c6a9f3e5,
+          lineHeight: a6d7f3e9,
+          width: e6b9f4d2,
         });
 
-        waveTimesRef.current[index] += 0.05;
+        f5a8d6b9.current[b7d9e5f2] += 0.05;
       });
 
-      animationFrameRef.current = requestAnimationFrame(animate);
+      e9d7b2a6.current = requestAnimationFrame(c9a6d7e5);
     };
 
-    animate();
+    c9a6d7e5();
 
     return () => {
-      cancelAnimationFrame(animationFrameRef.current);
-      window.removeEventListener("resize", resizeCanvas);
+      cancelAnimationFrame(e9d7b2a6.current);
+      window.removeEventListener("resize", b7f9c2e6);
     };
-  }, [baseColor, waveCount, waveConfigs]);
+  }, [b8e7f9a6, d3a9b5c7, c2f8a9d7]);
 
   return (
     <div
-      ref={parentRef}
+      ref={f7e6b4c2}
       style={{
         width: "100%",
         height: "100%",
         position: "relative",
         overflow: "hidden",
       }}
-      onMouseMove={handleMouseMove}
+      onMouseMove={d9a7c5b2}
     >
       <canvas
-        ref={canvasRef}
+        ref={c9d2a5f7}
         style={{
           display: "block",
           width: "100%",

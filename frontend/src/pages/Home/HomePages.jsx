@@ -7,29 +7,29 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className='font2'>
-      <header style={styles.header}>
-        <h1 style={styles.title}>Welcome to PloufPlouf</h1>
+    <div className='259d9a8737a84c7c91d40091baa0e360'>
+      <header style={aeab59423f04ac0b90fe983056a788c.header}>
+        <h1 style={aeab59423f04ac0b90fe983056a788c.title}>Welcome to PloufPlouf</h1>
       </header>
-      <main style={styles.main}>
-        <div className='container-jaj'>
+      <main style={aeab59423f04ac0b90fe983056a788c.main}>
+        <div className='cc5f7e978b2d4ad7870a4cfcc7132af0'>
           <OceanBodySlider />
           <button
-            className='login-button'
+            className='2df7369b29a04495a2b0c1ae4eb83496'
             onClick={() => navigate('/login')}
             type='button'>
             Logout
           </button>
         </div>
       </main>
-      <footer style={styles.footer}>
+      <footer style={aeab59423f04ac0b90fe983056a788c.footer}>
         <p>© 2024 SM3 Company</p>
       </footer>
     </div>
   );
 };
 
-const styles = {
+const aeab59423f04ac0b90fe983056a788c = {
   header: {
     background: '#282c34',
     padding: '20px',
@@ -57,4 +57,3 @@ const styles = {
 };
 
 export default HomePage;
-

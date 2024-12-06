@@ -3,14 +3,23 @@
     src: url('../../font/CrazyCurlz.ttf') format('truetype');
 }
 
-.font2 {
+.259d9a8737a84c7c91d40091baa0e360 {
     font-family: 'CustomFont2';
     font-weight: bold;
 }
 
-.container-jaj {
+.cc5f7e978b2d4ad7870a4cfcc7132af0 {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
+}
+
+.2df7369b29a04495a2b0c1ae4eb83496 {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
