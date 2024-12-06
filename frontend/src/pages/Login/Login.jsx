@@ -3,7 +3,7 @@ import FloatingElement from '../../components/FloatingElement/FloatingElement';
 import MDPInput from '../../components/MDPInput/MDPInput';
 import EMailInput from "../../components/EMailInput/EMailInput";
 import './Login.css';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const API_URL = process.env.REACT_APP_API_URL;
 
 const Login = () => {

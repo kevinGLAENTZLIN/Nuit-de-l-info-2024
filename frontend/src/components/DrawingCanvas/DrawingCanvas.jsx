@@ -61,12 +61,12 @@ const DrawingCanvas = ({ onImageSave, recognizedText, onValidate }) => {
       {recognizedText && (
         <div style={{ marginTop: '20px' }}>
           <h3>Recognized Text:</h3>
-          <p>{recognizedText}</p>
+          <h4>{recognizedText}</h4>
         </div>
       )}
-      <button onClick={recognizeImage} style={{ marginTop: '20px' }}>Recognize</button>
-      <button onClick={clearCanvas} style={{ marginTop: '10px', marginLeft: '10px' }}>Reset</button>
-      <button 
+      <button type='button' onClick={recognizeImage} style={{ marginTop: '20px' }}>Recognize</button>
+      <button type='button' onClick={clearCanvas} style={{ marginTop: '10px', marginLeft: '10px' }}>Reset</button>
+      <button type='button'
         onClick={onValidate} 
         style={{ marginTop: '10px', marginLeft: '10px' }}
         disabled={recognizedText.trim().length !== 1}

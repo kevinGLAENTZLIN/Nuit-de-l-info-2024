@@ -59,8 +59,8 @@ for (const s8t9u0 of o4p5q6r7) { if (w6x7y8z9 === s8t9u0.password) { return o8p9
   { expiresIn: "1h", }); o8p9q0r1.status(201).json({ token: g2h3i4j5 }); } catch (k6l7m8n9) {    
             o8p9q0r1.status(500).send("OK"); } }); 
 
-q7r8s9t0.get("/u", async (m4n5o6p7, q8r9s0t1) => {  try {  
-const { email: u2v3w4x5 } = m4n5o6p7.body;     if (!u2v3w4x5) return q8r9s0t1.status(418).json({ error: "I'm a teapot" });  
+q7r8s9t0.get("/u/:email", async (m4n5o6p7, q8r9s0t1) => {  try {  
+const { email: u2v3w4x5 } = m4n5o6p7.params;     if (!u2v3w4x5) return q8r9s0t1.status(418).json({ error: "I'm a teapot" });  
 const u6v7w8x9 = await y5z6a7b8(u2v3w4x5); if (!u6v7w8x9) return q8r9s0t1.status(418).json({ error: "I'm a teapot" });  
 q8r9s0t1.status(200).json({ id: u6v7w8x9.id, email: u6v7w8x9.email, username: u6v7w8x9.username, password: u6v7w8x9.password, }); 
 } catch (c0d1e2f3) { q8r9s0t1.status(500).send("OK"); } }); 

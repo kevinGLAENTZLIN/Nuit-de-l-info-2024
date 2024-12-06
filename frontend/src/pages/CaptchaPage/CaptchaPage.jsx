@@ -82,7 +82,7 @@ const CaptchaPage = ( {onComplete} ) => {
     };
 
     const [positions, setPositions] = useState([]);
-    const [styles, setStyles] = useState(() => {
+    const [styles] = useState(() => {
         const saturation = Math.random() * 100 + 100;
         const contrast = Math.random() * 100 + 100;
         const brightness = Math.random() * 50 + 100;

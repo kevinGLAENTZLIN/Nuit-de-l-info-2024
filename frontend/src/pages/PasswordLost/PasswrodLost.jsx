@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import DrawingCanvas from '../../components/DrawingCanvas/DrawingCanvas.jsx';
 import Tesseract from "tesseract.js";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const PasswordResetPage = () =>{
   
   const [email, setEmail] = useState("");
@@ -10,31 +12,31 @@ const PasswordResetPage = () =>{
   const [wordToGuess, setWordToGuess] = useState("REACT");
   const [guessedLetters, setGuessedLetters] = useState([]);
   const [incorrectGuesses, setIncorrectGuesses] = useState(0);
-  const maxIncorrectGuesses = 9;
+  const maxIncorrectGuesses = 10;
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
 
   const handleEmailSubmit = async () => {
-    try {
-      const response = await fetch('http://localhost:8080/api/user/u', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
+    fetch(`${API_URL}/api/user/u/${email}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.password) {
+          setIsEmailValidated(true);
+          setWordToGuess(data.password);
+        } else
+          alert('Erreur :)');
+      })
+      .catch(error => {
+        console.error('Erreur:', error);
+        alert('Une erreur est survenue.');
       });
-
-      if (response.ok) {
-        setIsEmailValidated(true);
-      } else {
-        alert('Failed to validate email. Please try again.');
-      }
-    } catch (error) {
-      console.error('Error submitting email:', error);
-      alert('An error occurred. Please try again.');
-    }
   };
 
   const handleImageSave = (image) => {
@@ -62,7 +64,7 @@ const PasswordResetPage = () =>{
         }
       }
     }
-    setRecognizedText(""); // Reset after validation
+    setRecognizedText("");
   };
 
   const displayWord = () => {
@@ -101,7 +103,7 @@ const PasswordResetPage = () =>{
             value={email}
             onChange={handleEmailChange}
             placeholder="Enter your email"
-            style={{ padding: '10px', fontSize: '16px' }}
+            style={{ padding: '10px', fontSize: '16px', width: '80%' }}
           />
           <button onClick={handleEmailSubmit} style={{ marginLeft: '10px', padding: '10px', fontSize: '16px' }}>
             Validate
@@ -115,13 +117,13 @@ const PasswordResetPage = () =>{
             recognizedText={recognizedText} 
             onValidate={handleValidate} 
           />
-          <div style={{ marginTop: '20px' }}>
-            <h2>Word to Guess</h2>
-            <p>{displayWord()}</p>
+          <div style={{ marginTop: '20px', color: 'black' }}>
+            <h3>Word to Guess</h3>
+            <h4>{displayWord()}</h4>
             <h3>Incorrect Guesses: {incorrectGuesses} / {maxIncorrectGuesses}</h3>
             <pre style={{ fontSize: '20px', lineHeight: '1.2' }}>{renderHangman()}</pre>
-            {isGameOver && <p>Game Over! The word was: {wordToGuess}</p>}
-            {isGameWon && <p>Congratulations! You've guessed the word!</p>}
+            {isGameOver && <h4>Game Over! The password was: {wordToGuess}</h4>}
+            {isGameWon && <h4>Congratulations! You've guessed your password !</h4>}
           </div>
         </div>
       )}
