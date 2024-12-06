@@ -1,0 +1,121 @@
+/* Style du container du slider */
+.slider-container {
+    position: relative;
+    width: 80%;
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: #00b0ff; /* Fond bleu pour rappeler l'océan */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .slide {
+    padding: 20px;
+    transition: opacity 0.5s ease;
+  }
+  
+  h2 {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 20px;
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .control-btn {
+    background-color: #ff4d4d; /* Rouge pour les boutons */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .control-btn:hover {
+    background-color: #ff2a2a;
+  }
+  
+  /* Animation des éléments */
+  .animated-element {
+    margin-bottom: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto;
+  }
+  
+  /* Animation spécifique pour chaque élément */
+  .heart {
+    background-color: #ff4d4d;
+    animation: heart-beat 1s infinite ease-in-out;
+  }
+  
+  .lungs {
+    background-color: #50C878;
+    animation: lungs-breath 1.5s infinite ease-in-out;
+  }
+  
+  .current {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, rgba(0, 0, 255, 0.5) 100%);
+    animation: current-flow 1.5s infinite linear;
+  }
+  
+  .nutrients {
+    background: linear-gradient(90deg, rgba(255, 255, 0, 0.5) 0%, rgba(255, 69, 0, 0.5) 100%);
+    animation: nutrients-flow 2s infinite linear;
+  }
+  
+  /* Animations spécifiques aux éléments */
+  @keyframes heart-beat {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+  }
+  
+  @keyframes lungs-breath {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+  
+  @keyframes current-flow {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  @keyframes nutrients-flow {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  

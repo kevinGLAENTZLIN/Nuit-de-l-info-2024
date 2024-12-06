@@ -1,4 +1,5 @@
 import React from 'react';
+import OceanBodySlider from '../../components/OceanBodySlider/OceanBodySlider';
 
 const HomePage = () => {
   return (
@@ -7,6 +8,7 @@ const HomePage = () => {
         <h1 style={styles.title}>Welcome to PloufPlouf</h1>
       </header>
       <main style={styles.main}>
+        <OceanBodySlider />
       </main>
       <footer style={styles.footer}>
         <p>© 2024 SM3 Company</p>
