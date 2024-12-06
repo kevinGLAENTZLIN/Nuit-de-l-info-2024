@@ -1,15 +1,26 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 import OceanBodySlider from '../../components/OceanBodySlider/OceanBodySlider';
 import './HomePages.css';
 
 const HomePage = () => {
+  const navigate = useNavigate();
+
   return (
     <div className='font2'>
       <header style={styles.header}>
         <h1 style={styles.title}>Welcome to PloufPlouf</h1>
       </header>
       <main style={styles.main}>
-        <OceanBodySlider />
+        <div className='container-jaj'>
+          <OceanBodySlider />
+          <button
+            className='login-button'
+            onClick={() => navigate('/login')}
+            type='button'>
+            Logout
+          </button>
+        </div>
       </main>
       <footer style={styles.footer}>
         <p>© 2024 SM3 Company</p>

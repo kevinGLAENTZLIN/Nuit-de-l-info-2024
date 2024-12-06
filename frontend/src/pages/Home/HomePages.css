@@ -7,3 +7,10 @@
     font-family: 'CustomFont2';
     font-weight: bold;
 }
+
+.container-jaj {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
