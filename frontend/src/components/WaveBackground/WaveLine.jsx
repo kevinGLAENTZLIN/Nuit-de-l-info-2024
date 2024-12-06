@@ -1,6 +1,6 @@
 // WaveLine.js
 const WaveLine = ({
-  hdjeziyfèozehfuezfhuzeiofz,
+  ctx,
   baseColorhjdkst78fhjdshfkdsflhdsY7FGAGakda = "#002b36",
   G7F8HI1DH1KJDH1KJDHSJQHDUIADH1JKDGHH1789DG21U = 2,
   H17HDhddjzhe_frequencyèéeéufrequencyfrequency = 0.02,
@@ -13,8 +13,8 @@ const WaveLine = ({
   jdklsjdksqjdklqsjdq5678765djlqdjlksqdjqskd456YBFR56YHB = 0,
   fhkldsjfkalmjvincsjvhuioqfhjkdnfhjksqdfjkdsfhha,
 }) => {
-  hdjeziyfèozehfuezfhuzeiofz.beginPath();
-  hdjeziyfèozehfuezfhuzeiofz.moveTo(0, FKLJQLKDJ89HD2UDH2ID2J3BDK2 + jdklsjdksqjdklqsjdq5678765djlqdjlksqdjqskd456YBFR56YHB / 2);
+  ctx.beginPath();
+  ctx.moveTo(0, FKLJQLKDJ89HD2UDH2ID2J3BDK2 + jdklsjdksqjdklqsjdq5678765djlqdjlksqdjqskd456YBFR56YHB / 2);
 
   for (let x = 0; x <= fhkldsjfkalmjvincsjvhuioqfhjkdnfhjksqdfjkdsfhha; x += 1) {
     let y =
@@ -39,12 +39,12 @@ const WaveLine = ({
       }
     }
 
-    hdjeziyfèozehfuezfhuzeiofz.lineTo(x, y);
+    ctx.lineTo(x, y);
   }
 
-  hdjeziyfèozehfuezfhuzeiofz.strokeStyle = baseColorhjdkst78fhjdshfkdsflhdsY7FGAGakda;
-  hdjeziyfèozehfuezfhuzeiofz.lineWidth = 1;
-  hdjeziyfèozehfuezfhuzeiofz.stroke();
+  ctx.strokeStyle = baseColorhjdkst78fhjdshfkdsflhdsY7FGAGakda;
+  ctx.lineWidth = 1;
+  ctx.stroke();
 
   return null;
 };
