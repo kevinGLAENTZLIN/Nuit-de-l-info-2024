@@ -1,88 +1,132 @@
 import React, { useState } from 'react';
+import DrawingCanvas from '../../components/DrawingCanvas/DrawingCanvas.jsx';
+import Tesseract from "tesseract.js";
 
-const PasswordResetPage = () => {
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+const PasswordResetPage = () =>{
+  
+  const [email, setEmail] = useState("");
+  const [isEmailValidated, setIsEmailValidated] = useState(false);
+  const [recognizedText, setRecognizedText] = useState("");
+  const [wordToGuess, setWordToGuess] = useState("REACT");
+  const [guessedLetters, setGuessedLetters] = useState([]);
+  const [incorrectGuesses, setIncorrectGuesses] = useState(0);
+  const maxIncorrectGuesses = 9;
 
-  const handleChange = (e) => {
+  const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleEmailSubmit = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/api/user/u', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
 
-    // Simulate backend password reset request
-    console.log('Password reset link sent to:', email);
+      if (response.ok) {
+        setIsEmailValidated(true);
+      } else {
+        alert('Failed to validate email. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting email:', error);
+      alert('An error occurred. Please try again.');
+    }
+  };
 
-    // Show confirmation message
-    setMessage(`If an account with ${email} exists, a password reset link has been sent.`);
+  const handleImageSave = (image) => {
+    Tesseract.recognize(
+      image,
+      'eng',
+      {
+        logger: (info) => console.log(info),
+      }
+    ).then(({ data: { text } }) => {
+      const character = text.trim();
+      setRecognizedText(character);
+    }).catch((error) => {
+      console.error("Error recognizing text:", error);
+    });
+  };
 
-    // Reset email input field
-    setEmail('');
+  const handleValidate = () => {
+    const character = recognizedText.trim();
+    if (character.length === 1 && character.charCodeAt(0) < 128) {
+      if (!guessedLetters.includes(character)) {
+        setGuessedLetters([...guessedLetters, character]);
+        if (!wordToGuess.includes(character)) {
+          setIncorrectGuesses(incorrectGuesses + 1);
+        }
+      }
+    }
+    setRecognizedText(""); // Reset after validation
+  };
+
+  const displayWord = () => {
+    return wordToGuess.split('').map((letter) => (
+      guessedLetters.includes(letter) ? letter : "_"
+    )).join(' ');
+  };
+
+  const isGameOver = incorrectGuesses >= maxIncorrectGuesses;
+  const isGameWon = wordToGuess.split('').every(letter => guessedLetters.includes(letter));
+
+  const renderHangman = () => {
+    const stages = [
+      "\n\n\n\n\n",
+      "\n\n\n\n\n____",
+      "|\n|\n|\n|\n|____",
+      "_____\n|\n|\n|\n|____",
+      "_____\n|   |\n|\n|\n|____",
+      "_____\n|   |\n|   O\n|\n|____",
+      "_____\n|   |\n|   O\n|   |\n|____",
+      "_____\n|   |\n|   O\n|  /|\n|____",
+      "_____\n|   |\n|   O\n|  /|\\\n|____",
+      "_____\n|   |\n|   O\n|  /|\\\n|  /\n|____",
+      "_____\n|   |\n|   O\n|  /|\\\n|  / \\\n|____"
+    ];
+    return stages[incorrectGuesses];
   };
 
   return (
-    <div style={styles.container}>
-      <h1 style={styles.title}>Reset Your Password</h1>
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <div style={styles.formGroup}>
-          <label htmlFor="email">Email:</label>
+    <div>
+      {!isEmailValidated ? (
+        <div>
+          <h1>Enter Your Email</h1>
           <input
             type="email"
-            id="email"
-            name="email"
             value={email}
-            onChange={handleChange}
-            required
-            style={styles.input}
+            onChange={handleEmailChange}
+            placeholder="Enter your email"
+            style={{ padding: '10px', fontSize: '16px' }}
           />
+          <button onClick={handleEmailSubmit} style={{ marginLeft: '10px', padding: '10px', fontSize: '16px' }}>
+            Validate
+          </button>
         </div>
-        <button type="submit" style={styles.button}>Send Reset Link</button>
-      </form>
-      {message && <p style={styles.message}>{message}</p>}
+      ) : (
+        <div>
+          <h1>Hangman Game with Drawing Input</h1>
+          <DrawingCanvas 
+            onImageSave={handleImageSave} 
+            recognizedText={recognizedText} 
+            onValidate={handleValidate} 
+          />
+          <div style={{ marginTop: '20px' }}>
+            <h2>Word to Guess</h2>
+            <p>{displayWord()}</p>
+            <h3>Incorrect Guesses: {incorrectGuesses} / {maxIncorrectGuesses}</h3>
+            <pre style={{ fontSize: '20px', lineHeight: '1.2' }}>{renderHangman()}</pre>
+            {isGameOver && <p>Game Over! The word was: {wordToGuess}</p>}
+            {isGameWon && <p>Congratulations! You've guessed the word!</p>}
+          </div>
+        </div>
+      )}
     </div>
   );
-};
-
-const styles = {
-  container: {
-    maxWidth: '400px',
-    margin: '0 auto',
-    padding: '20px',
-    textAlign: 'center',
-    border: '1px solid #ccc',
-    borderRadius: '10px',
-    boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
-  },
-  title: {
-    marginBottom: '20px',
-    fontSize: '24px',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  formGroup: {
-    marginBottom: '15px',
-  },
-  input: {
-    width: '100%',
-    padding: '10px',
-    borderRadius: '5px',
-    border: '1px solid #ccc',
-  },
-  button: {
-    padding: '10px 15px',
-    borderRadius: '5px',
-    border: 'none',
-    background: '#007bff',
-    color: '#fff',
-    cursor: 'pointer',
-  },
-  message: {
-    marginTop: '20px',
-    color: '#28a745',
-  },
 };
 
 export default PasswordResetPage;
