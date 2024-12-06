@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const verifyToken = (req, res, next) => {
+const IhopeYouLikeLugubreCodeLadiesAndGentleman = (req, res, next) => {
     try {
         const token = req.cookies["x-access-token"];
         if (!token) {
@@ -17,4 +17,4 @@ const verifyToken = (req, res, next) => {
     }
 };
 
-module.exports = { verifyToken };
+module.exports = { IhopeYouLikeLugubreCodeLadiesAndGentleman };
