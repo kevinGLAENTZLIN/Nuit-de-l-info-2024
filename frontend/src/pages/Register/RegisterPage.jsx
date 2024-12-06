@@ -5,6 +5,7 @@ import ReverseInput from '../../components/ReverseInput/ReverseInput';
 import './Register.css';
 import MapInput from '../../components/MapInput/MapInput';
 import DateOfBirthGuess from '../../components/DateOfBirthGuess/DateOfBirthGuess';
+import EMailInput from '../../components/EMailInput/EMailInput';
 const API_URL = process.env.REACT_APP_API_URL;
 
 const Register = () => {
@@ -48,7 +49,7 @@ const Register = () => {
             <ReverseInput placeholder="Username | earsUenm" inputValue={username} setInputValue={setUsername} />
         </FloatingElement>
         <FloatingElement inputValue={email}>
-            <ReverseInput placeholder="Email" inputValue={email} setInputValue={setEmail} />
+            <EMailInput placeholder="Email" inputValue={email} setInputValue={setEmail} />
         </FloatingElement>
         <FloatingElement inputValue={password}>
             <MDPInput placeholder="Mot de passe" inputValue={password} setInputValue={setPassword}/>

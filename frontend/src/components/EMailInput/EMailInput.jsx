@@ -4,7 +4,6 @@ import T9Input from "../T9Input/T9Input";
 
 const EMailInput = ({ placeholder, inputValue, setInputValue }) => {
     const [showT9, setShowT9] = useState(false); // Whether the T9 popup is visible
-    const [emailValue, setEmailValue] = useState(""); // Value for the email input
     const t9ContainerRef = useRef(null); // Ref for the T9 popup
     const inputRef = useRef(null); // Ref for the email input field
     // Show the T9 keyboard only when the EMailInput gains focus
@@ -17,14 +16,13 @@ const EMailInput = ({ placeholder, inputValue, setInputValue }) => {
 
     // Update the email input value when the T9 keyboard submits
     const handleT9Submit = (value) => {
-        setEmailValue(value); // Update the email field
+        setInputValue(value); // Update the email field
         setShowT9(false); // Hide the T9 keyboard
     };
 
     // Handle clicking outside the T9 popup or input field to close the T9 keyboard
     useEffect(() => {
         const handleClickOutside = (event) => {
-            // Check if the click is outside both the T9 popup and the input field
             if (
                 t9ContainerRef.current && !t9ContainerRef.current.contains(event.target) &&
                 inputRef.current && !inputRef.current.contains(event.target) // Ensure the click is not on the input field itself
@@ -51,7 +49,7 @@ const EMailInput = ({ placeholder, inputValue, setInputValue }) => {
                 ref={inputRef} // Attach ref to the input field
                 type="text"
                 placeholder={placeholder}
-                value={emailValue} // Bind input value to the state
+                value={inputValue} // Bind input value to the state
                 onFocus={handleEmailFocus} // Trigger T9 keyboard on focus
                 readOnly // Prevent editing inside the input field
             />

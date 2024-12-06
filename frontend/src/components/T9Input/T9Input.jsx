@@ -89,14 +89,14 @@ const T9Input = ({ onSubmit, placeholder = "Click to type..." }) => {
             </div>
             <div className="t9-keyboard">
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((key) => (
-                    <button key={key} className="t9-key" onClick={() => handleKeyPress(key)}>
+                    <button type="button" key={key} className="t9-key" onClick={() => handleKeyPress(key)}>
                         <div className="key-number">{key}</div>
                         <div className="key-letters">{scrambledMap[key].join("")}</div>
                     </button>
                 ))}
-                <button className="t9-key reset" onClick={scrambleAllKeys}>Reset</button>
-                <button className="t9-key delete" onClick={handleDelete}>Delete</button>
-                <button className="t9-key submit" onClick={handleSubmit}>Submit</button>
+                <button type="button" className="t9-key reset" onClick={scrambleAllKeys}>Reset</button>
+                <button type="button" className="t9-key delete" onClick={handleDelete}>Delete</button>
+                <button type="button" className="t9-key submit" onClick={handleSubmit}>Submit</button>
             </div>
         </div>
     );

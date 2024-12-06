@@ -1,77 +1,21 @@
-/* T9 Popup */
-.t9-popup {
-  position: fixed;
-  bottom: 20px; /* Place it 20px from the bottom */
-  right: 20px; /* Place it 20px from the right */
-  background-color: #ffffff; /* Ensure the background contrasts well */
-  color: #000; /* Text should be visible */
-  border-radius: 8px; /* Smooth corners */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Stronger shadow for pop-up effect */
-  padding: 20px;
-  z-index: 1000;
-  width: 300px; /* Fixed width for consistency */
-  animation: slideIn 0.3s ease-in-out; /* Add a slide-in animation for better UX */
-  margin-left: -10px;
-}
-
-/* Slide-in animation for T9 */
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Floating Element */
-.floating-element {
-  margin-bottom: 20px;
-}
-
-.floating-element input {
-  width: 300px;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  cursor: pointer;
-  background-color: #f9f9f9; /* Subtle background color for inputs */
-}
-
-.floating-element input:focus {
-  outline: none;
-  border-color: #007bff; /* Blue border on focus */
-  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5); /* Add subtle glow */
-}
-
-/* Login Container */
 .login-container {
-  position: relative;
   height: 100vh;
   display: flex;
-  background-color: #282c34; /* Dark background for contrast */
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  color: #ffffff; /* White text for readability */
+  justify-content: center;
+  background-color: #282c34;
+  overflow: hidden;
 }
 
-/* Login Button */
 .login-button {
   margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: #ffffff;
+  padding: 15px 30px;
+  font-size: 18px;
+  background-color: #61dafb;
+  color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.login-button:hover {
-  background-color: #0056b3;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);
 }
