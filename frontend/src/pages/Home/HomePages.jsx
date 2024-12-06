@@ -1,9 +1,10 @@
 import React from 'react';
 import OceanBodySlider from '../../components/OceanBodySlider/OceanBodySlider';
+import './HomePages.css';
 
 const HomePage = () => {
   return (
-    <div>
+    <div className='font2'>
       <header style={styles.header}>
         <h1 style={styles.title}>Welcome to PloufPlouf</h1>
       </header>

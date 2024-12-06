@@ -1,51 +1,87 @@
 import React, { useState } from 'react';
 import './OceanBodySlider.css';
+import '../../components/WaveBackground/Wave';
+import WaveContainer from '../../components/WaveBackground/Wave';
 
 const OceanBodySlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const parallels = [
+  const ocean = [
     {
-      title: "Cœur (Circulation sanguine)",
-      description: "Le cœur pompe le sang à travers les artères et les veines, tout comme les courants marins transportent des nutriments et des éléments essentiels dans l'océan.",
+      title: "Courants marins",
+      description: "Les courants marins déplacent les nutriments essentiels à la survie de tous l'écosystème à travers les océans.",
       animationClass: 'heart',
     },
     {
-      title: "Poumons (Photosynthèse)",
-      description: "Les poumons humains absorbent l'oxygène et expulsent le CO2, tout comme les planctons et les algues marines dans l'océan absorbent le CO2 et produisent de l'oxygène pendant la photosynthèse.",
+      title: "Plancton",
+      description: "Le plancton est un élément essentiel dans la décomposition des déchets dans l'océan.",
+      animationClass: 'nutrients',
+    },
+    {
+      title: "Phytoplancton & Algues",
+      description: "Les phytoplanctons et les algues permettent de produire de l'oxygène et absorbe le CO2 de l'atmosphère. C'est l'un des poumons de la planète.",
       animationClass: 'lungs',
     },
+  ];
+
+  const humanBody = [
     {
-      title: "Courants marins (Transport des nutriments)",
-      description: "Les courants marins déplacent les nutriments essentiels à travers les océans, tout comme les artères transportent le sang riche en nutriments à travers le corps humain.",
-      animationClass: 'current',
+      title: "Veines et artères",
+      description: "Les veines et les artères permettent de transporter un sang riche en nutriment dans tout les organes du corps.",
     },
     {
-      title: "Système digestif (Nutriments marins)",
-      description: "Tout comme le système digestif transforme la nourriture en nutriments pour nourrir les cellules du corps, les océans distribuent des nutriments à travers les courants marins pour soutenir la vie marine.",
-      animationClass: 'nutrients',
+      title: "Système digestif",
+      description: "Le système digestif permet de décomposer les aliments pour en extraire les nutriments essentiels à la survie du corps.",
+    },
+    {
+      title: "Poumons",
+      description: "Les poumons permettent de capter l'oxygène de l'air et de rejeter le CO2 produit par le corps.",
     },
   ];
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % parallels.length);
+    setCurrentSlide((prev) => (prev + 1) % ocean.length);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + parallels.length) % parallels.length);
+    setCurrentSlide((prev) => (prev - 1 + ocean.length) % ocean.length);
   };
 
   return (
-    <div className="slider-container">
-      <div className="slide">
-        <div className={`animated-element ${parallels[currentSlide].animationClass}`} />
-        <h2>{parallels[currentSlide].title}</h2>
-        <p>{parallels[currentSlide].description}</p>
+    <div className="slider-container font2">
+      <div className="wave-container">
+        <WaveContainer waveCount={10} />
       </div>
-
-      <div className="controls">
-        <button type="button" onClick={prevSlide} className="control-btn">Précédent</button>
-        <button type="button" onClick={nextSlide} className="control-btn">Suivant</button>
+      <div className="main-container-slider">
+        <div className="content">
+          <div className="slide">
+            <div className={`animated-element ${ocean[currentSlide].animationClass}`} />
+          </div>
+          <div className="comparatif">
+            <div>
+              <h1>{ocean[currentSlide].title}</h1>
+              <p
+                style={{
+                  color: '#000000',
+                  fontSize: '1.5rem',
+              }}
+              >{ocean[currentSlide].description}</p>
+            </div>
+            <div>
+              <h1>{humanBody[currentSlide].title}</h1>
+              <p
+                style={{
+                  color: '#000000',
+                  fontSize: '1.5rem',
+              }}
+              >{humanBody[currentSlide].description}</p>
+            </div>
+          </div>
+          <div className="controls">
+            <button onClick={prevSlide} className="control-btn">Précédent</button>
+            <button onClick={nextSlide} className="control-btn">Suivant</button>
+          </div>
+        </div>
       </div>
     </div>
   );
