@@ -3,12 +3,13 @@ import FloatingElement from '../../components/FloatingElement/FloatingElement';
 import MDPInput from '../../components/MDPInput/MDPInput';
 import EMailInput from "../../components/EMailInput/EMailInput";
 import './Login.css';
-
+import { Navigate, useNavigate } from 'react-router-dom';
 const API_URL = process.env.REACT_APP_API_URL;
 
 const Login = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,7 +27,9 @@ const Login = () => {
     .then(response => response.json())
     .then(data => {
       if (data.o1p2q3r4) {
-        console.log('token:', data.o1p2q3r4);
+        // console.log('token:', data.o1p2q3r4);
+        alert('Connexion réussie !!');
+        navigate("/");
       } else
         alert('Erreur :)');
     })
@@ -47,6 +50,8 @@ const Login = () => {
             <MDPInput placeholder="Mot de passe" inputValue={password} setInputValue={setPassword}/>
         </FloatingElement>
         <button type='submit' className="login-button">Connexion</button>
+        <button type='button' className="login-button" onClick={() => navigate("/register")}>Inscription</button>
+        <button type='button' className="login-button" onClick={() => navigate("/findpassword")}>Mot de passe oublié</button>
       </form>
     </div>
   );

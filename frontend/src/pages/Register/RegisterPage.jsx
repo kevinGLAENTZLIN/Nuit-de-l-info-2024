@@ -7,6 +7,7 @@ import MapInput from '../../components/MapInput/MapInput';
 import DateOfBirthGuess from '../../components/DateOfBirthGuess/DateOfBirthGuess';
 import EMailInput from '../../components/EMailInput/EMailInput';
 import CaptchaPage from '../CaptchaPage/CaptchaPage';
+import { useNavigate } from 'react-router-dom';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -18,7 +19,8 @@ const Register = () => {
   const [dateOfBirth, setDateOfBirth] = useState("Date de naissance");
   const [showCaptcha, setShowCaptcha] = useState(false);
   const [captchaValidated, setCaptchaValidated] = useState(false);
-
+  const navigate = useNavigate();
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!captchaValidated) {
@@ -41,7 +43,9 @@ const Register = () => {
       .then(response => response.json())
       .then(data => {
         if (data.token) {
-          console.log('token:', data.token);
+          // console.log('token:', data.token);
+          alert('Connexion normalement réussie');
+          navigate("/");
         } else
           alert('Erreur :)');
       })
@@ -77,6 +81,7 @@ const Register = () => {
             <DateOfBirthGuess placeholder="Date de naissance" inputValue={dateOfBirth} setInputValue={setDateOfBirth} />
           </FloatingElement>
           <button type="submit" className="register-button">S'enregistrer</button>
+          <button type="button" className="register-button" onClick={() => navigate("/login")}>Connexion</button>
           {!captchaValidated && (
             <button
               type="button"

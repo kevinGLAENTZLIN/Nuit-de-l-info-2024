@@ -127,8 +127,8 @@ const CaptchaPage = ( {onComplete} ) => {
                 <div className="captcha-box">
                     <div className="target-container">
                         <p>Find and click the target character:</p>
-                        <img 
-                            src={characters_to_find[targetCharacter]} 
+                        <img
+                            src={characters_to_find[targetCharacter]}
                             alt="target  character"
                             className="target-image"
                         />
