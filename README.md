@@ -35,7 +35,7 @@ Afin de rendre le code encore plus obscur, nous avons choisi des noms de fichier
 - Mongol : Монгол файл нэр (Nom utilisé en mongol, on a fait tourner une roulette et c'est sa qui à gagner)
 - Indien : भारतीय फ़ाइल नाम (Nom utilisé en indien, i'm going to learn c++)
 - Latin/Grecs : Nom de fichiers en caractères latins et grecs(parce que l'histoire des dieu romain etc bah c'est grave cool, team latin au collège).
-- Arabe : بندقية أعلى (nom utilisé en arabe, parce que c'est fun).
+- Arabe : بندقية أعلى (nom utilisé en arabe, parce que c'est fun de lire à l'envers).
 
 Cette diversité de langues et de caractères rend le code illisible pour la plupart des outils de déminification, ce qui est le but après tout et c'est marrant :)
 
