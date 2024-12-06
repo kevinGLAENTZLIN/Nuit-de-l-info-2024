@@ -44,8 +44,8 @@ const OceanBodySlider = () => {
       </div>
 
       <div className="controls">
-        <button onClick={prevSlide} className="control-btn">Précédent</button>
-        <button onClick={nextSlide} className="control-btn">Suivant</button>
+        <button type="button" onClick={prevSlide} className="control-btn">Précédent</button>
+        <button type="button" onClick={nextSlide} className="control-btn">Suivant</button>
       </div>
     </div>
   );
