@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { animated, useSprings } from 'react-spring';
-import { useInterval } from 'usehooks-ts'
+import { useInterval } from 'usehooks-ts';
 import './CaptchaPage.css';
 
 import mario from "../../assets/sm64ds_mario.png";
@@ -21,7 +21,7 @@ const getRandomCharacterToFind = () => {
 };
 
 const getRandomCharacterToSpawn = (characterToFind) => {
-    const tmp = characters[Math.floor(Math.random() * characters.length)];;
+    const tmp = characters[Math.floor(Math.random() * characters.length)];
 
     if (Math.random() < 0.5) {
         if (characterToFind === mario && tmp !== wario) return wario;
@@ -34,7 +34,6 @@ const getRandomCharacterToSpawn = (characterToFind) => {
 
     return getRandomCharacterToSpawn(characterToFind);
 };
-
 
 const shuffleArray = (array) => {
     return array.sort(() => Math.random() - 0.5);
@@ -106,6 +105,10 @@ const CaptchaPage = () => {
         }))
     );
 
+    const filterStyle = {
+        filter: `saturate(${Math.random() * 100 + 100}%) contrast(${Math.random() * 100 + 100}%) brightness(${Math.random() * 50 + 100}%)`
+    };
+
     return (
         <div className="captcha-container">
             {!success ? (
@@ -124,7 +127,7 @@ const CaptchaPage = () => {
                                 key={index}
                                 className="grid-item"
                                 onClick={() => handleCharacterClick(character)}
-                                style={springs[index]}
+                                style={{ ...springs[index], ...filterStyle }}
                             >
                                 <img
                                     src={character}
