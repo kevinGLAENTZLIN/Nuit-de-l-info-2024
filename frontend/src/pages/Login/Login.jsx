@@ -27,7 +27,8 @@ const Login = () => {
     .then(data => {
       if (data.o1p2q3r4) {
         console.log('token:', data.o1p2q3r4);
-      }
+      } else
+        alert('Erreur :)');
     })
     .catch(error => {
       console.error('Erreur:', error);

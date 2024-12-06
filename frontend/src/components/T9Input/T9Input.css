@@ -1,13 +1,11 @@
-/* Wrap both input and T9 keyboard together */
 .t9-input-container {
   display: flex;
-  flex-direction: column; /* Stack the input field and keyboard vertically */
-  align-items: flex-start; /* Align to the left by default */
-  width: 100%; /* Make sure the container stretches across the full width */
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
   padding: 10px 0;
 }
 
-/* Input field styles */
 .t9-display {
   width: 100%;
   padding: 0.5rem;
@@ -24,7 +22,6 @@
   color: #aaa;
 }
 
-/* Keyboard layout */
 .t9-keyboard {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -34,7 +31,6 @@
   margin-left: -2px;
 }
 
-/* Individual key button styles */
 .t9-key {
   padding: 1rem;
   background-color: #e0e0e0;
@@ -49,7 +45,6 @@
   background-color: #d0d0d0;
 }
 
-/* Special key styles */
 .reset, .delete, .submit {
   width: 100%;
 }

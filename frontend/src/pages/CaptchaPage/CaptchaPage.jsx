@@ -60,24 +60,24 @@ const moveCharacters = (positions) => {
     });
 };
 
-const CaptchaPage = () => {
-    const [targetCharacter, setTargetCharacter] = useState(getRandomCharacterToFind());
+const CaptchaPage = ( {onComplete} ) => {
+    const [targetCharacter] = useState(getRandomCharacterToFind());
     const [grid, setGrid] = useState([]);
     const [success, setSuccess] = useState(false);
 
     useEffect(() => {
-        const newGrid = [characters[targetCharacter]];
-        
+        const targetChar = characters[targetCharacter];
+        const newGrid = [targetChar];
         for (let i = 0; i < 70; i++) {
-            newGrid.push(getRandomCharacterToSpawn(characters[targetCharacter]));
+            newGrid.push(getRandomCharacterToSpawn(targetChar));
         }
         setGrid(shuffleArray(newGrid));
-    }, [characters[targetCharacter]]);
-    
+    }, [targetCharacter]);
 
     const handleCharacterClick = (character) => {
         if (character === characters[targetCharacter]) {
             setSuccess(true);
+            onComplete();
         }
     };
 
@@ -117,7 +117,7 @@ const CaptchaPage = () => {
                         <p>Find and click the target character:</p>
                         <img 
                             src={characters_to_find[targetCharacter]} 
-                            alt="target character"
+                            alt="target  character"
                             className="target-image"
                         />
                     </div>

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./T9Input.css";
 
-// Full character set to scramble
 const characterSet = "ABCDEFGHIJKLMNOPQRTSUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-+/*..!:=$£%&#@'\"|(){}";
 
 const T9Input = ({ onSubmit, placeholder = "Click to type..." }) => {
@@ -11,7 +10,6 @@ const T9Input = ({ onSubmit, placeholder = "Click to type..." }) => {
     const [keyPressTimer, setKeyPressTimer] = useState(null);
     const [scrambledMap, setScrambledMap] = useState(initializeScrambledMap());
 
-    // Function to initialize the scrambled T9 mapping with unique characters for each key
     function initializeScrambledMap() {
         const scramble = (count) => {
             const usedChars = new Set();
@@ -39,7 +37,6 @@ const T9Input = ({ onSubmit, placeholder = "Click to type..." }) => {
         };
     }
 
-    // Function to handle key presses and scrambling of characters
     const handleKeyPress = (key) => {
         if (keyPressTimer) {
             clearTimeout(keyPressTimer);
