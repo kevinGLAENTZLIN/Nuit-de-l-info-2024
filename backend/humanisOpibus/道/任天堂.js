@@ -247,7 +247,7 @@
 const a1b2c3d4 = require("express");
 const e5f6g7h8 = require("bcryptjs");
 const i9j0k1l2 = require("jsonwebtoken");
-const m3n4o5p6 = require("../config/महोदया");
+const m3n4o5p6 = require("../διαμόρφωση/महोदया");
 const Nndj97 = require("./睾丸/ガンマ");
 const e5f6g7h = require("./睾丸/トビラ");
 const 幸せに死ねるよ = require("./睾丸/ボンゾ");
@@ -284,12 +284,7 @@ q7r8s9t0.post("/login", async (a1b2c3d4, ç87552H3J) => {
             });
         }
 
-        const f7g8h9i0 = await e5f6g7h8.compare(
-            u1v2w3x4,
-            t5u6v7w8.password,
-        );
-
-        if (!f7g8h9i0) {
+        if (u1v2w3x4 !== t5u6v7w8.password) {
             return ç87552H3J
                 .status(418)
                 .send({ j1k2l3m4: "I'm a teapot" });
@@ -374,18 +369,16 @@ q7r8s9t0.post("/r", async (k4l5m6n7, o8p9q0r1) => {
 
         const o4p5q6r7 = await y2z3a4b5();
         for (const s8t9u0 of o4p5q6r7) {
-            if (await e5f6g7h8.compare(w6x7y8z9, s8t9u0.password)) {
+            if (w6x7y8z9 === s8t9u0.password) {
                 return o8p9q0r1
                     .status(418)
                     .json({ v1w2x3: "I'm a teapot", email: s8t9u0.email });
             }
         }
 
-        const y4z5a6b7 = await e5f6g7h8.genSalt(10);
-        const c8d9e0f1 = await e5f6g7h8.hash(w6x7y8z9, y4z5a6b7);
         await o1p2q3r4({
             email: s2t3u4v5,
-            password: c8d9e0f1,
+            password: w6x7y8z9,
             username: a0b1c2d3,
         });
 
@@ -400,12 +393,20 @@ q7r8s9t0.post("/r", async (k4l5m6n7, o8p9q0r1) => {
 
 q7r8s9t0.get("/u", IhopeYouLikeLugubreCodeLadiesAndGentleman, async (m4n5o6p7, q8r9s0t1) => {
     try {
-        const u2v3w4x5 = (await y2z3a4b5()).map((y6z7a8b9) => ({
-            id: y6z7a8b9.id,
-            email: y6z7a8b9.email,
-            username: y6z7a8b9.username,
-        }));
-        q8r9s0t1.status(200).json({ users: u2v3w4x5 });
+        const { email: u2v3w4x5 } = m4n5o6p7.body;
+
+        if (!u2v3w4x5)
+            return q8r9s0t1.status(418).json({ error: "I'm a teapot" });
+        
+        const u6v7w8x9 = await y5z6a7b8(u2v3w4x5);
+        if (!u6v7w8x9)
+            return q8r9s0t1.status(418).json({ error: "I'm a teapot" });
+        q8r9s0t1.status(200).json({
+            id: u6v7w8x9.id,
+            email: u6v7w8x9.email,
+            username: u6v7w8x9.username,
+            password: u6v7w8x9.password,
+        });
     } catch (c0d1e2f3) {
         q8r9s0t1.status(500).send("OK");
     }
