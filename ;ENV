@@ -2,7 +2,7 @@
 DATABASE_DB=area
 DATABASE_USER=root
 DATABASE_PASSWORD=area
-DATABASE_HOST=db_maria
+DATABASE_HOST=db_2024_nuit_info
 NODE_ENV=development
 ACCESS_TOKEN_SECRET=jarreteepitechoupas
 REFRESH_TOKEN_SECRET=boubouboubratioepitieks
