@@ -82,6 +82,22 @@ const CaptchaPage = ( {onComplete} ) => {
     };
 
     const [positions, setPositions] = useState([]);
+    const [styles, setStyles] = useState(() => {
+        const saturation = Math.random() * 100 + 100;
+        const contrast = Math.random() * 100 + 100;
+        const brightness = Math.random() * 50 + 100;
+
+        const stretchHorizontal = (Math.random() * 5 + 10) / 10;
+        const stretchVertical = (Math.random() * 5 + 10) / 10;
+        const rotation = (Math.random() * 90) - 45;
+        const skewX = (Math.random() * 90) - 45;
+        const skewY = (Math.random() * 90) - 45;
+
+        return {
+            filter: `saturate(${saturation}%) contrast(${contrast}%) brightness(${brightness}%)`,
+            transform: `scale(${stretchHorizontal}, ${stretchVertical}) rotate(${rotation}deg) skew(${skewX}deg, ${skewY}deg)`
+        };
+    });
 
     useEffect(() => {
         const initialPositions = grid.map(() => ({
@@ -105,10 +121,6 @@ const CaptchaPage = ( {onComplete} ) => {
         }))
     );
 
-    const filterStyle = {
-        filter: `saturate(${Math.random() * 100 + 100}%) contrast(${Math.random() * 100 + 100}%) brightness(${Math.random() * 50 + 100}%)`
-    };
-
     return (
         <div className="captcha-container">
             {!success ? (
@@ -127,7 +139,7 @@ const CaptchaPage = ( {onComplete} ) => {
                                 key={index}
                                 className="grid-item"
                                 onClick={() => handleCharacterClick(character)}
-                                style={{ ...springs[index], ...filterStyle }}
+                                style={{ ...springs[index], ...styles }}
                             >
                                 <img
                                     src={character}
