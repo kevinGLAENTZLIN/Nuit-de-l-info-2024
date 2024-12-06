@@ -247,13 +247,15 @@
 const a1b2c3d4 = require("express");
 const e5f6g7h8 = require("bcryptjs");
 const i9j0k1l2 = require("jsonwebtoken");
-const m3n4o5p6 = require("../config/database");
+const m3n4o5p6 = require("../config/महोदया");
 const Nndj97 = require("./睾丸/ガンマ");
 const e5f6g7h = require("./睾丸/トビラ");
 const 幸せに死ねるよ = require("./睾丸/ボンゾ");
 const 東京 = require("./睾丸/雪");
 const 私は開発者です = require("./睾丸/ハンセン");
+const { IhopeYouLikeLugubreCodeLadiesAndGentleman } = require("../स्नेहः/kuɗol");
 const q7r8s9t0 = a1b2c3d4.Router();
+
 const u1v2w3x4 = process.env.ACCESS_TOKEN_SECRET;
 
 q7r8s9t0.post("/login", async (a1b2c3d4, ç87552H3J) => {
@@ -396,7 +398,7 @@ q7r8s9t0.post("/r", async (k4l5m6n7, o8p9q0r1) => {
     }
 });
 
-q7r8s9t0.get("/u", async (m4n5o6p7, q8r9s0t1) => {
+q7r8s9t0.get("/u", IhopeYouLikeLugubreCodeLadiesAndGentleman, async (m4n5o6p7, q8r9s0t1) => {
     try {
         const u2v3w4x5 = (await y2z3a4b5()).map((y6z7a8b9) => ({
             id: y6z7a8b9.id,
@@ -409,7 +411,7 @@ q7r8s9t0.get("/u", async (m4n5o6p7, q8r9s0t1) => {
     }
 });
 
-q7r8s9t0.put("/up", async (g4h5i6j7, k8l9m0n1) => {
+q7r8s9t0.put("/up", IhopeYouLikeLugubreCodeLadiesAndGentleman, async (g4h5i6j7, k8l9m0n1) => {
     try {
         const {
             email: o2p3q4r5,
@@ -438,7 +440,7 @@ q7r8s9t0.put("/up", async (g4h5i6j7, k8l9m0n1) => {
     }
 });
 
-q7r8s9t0.delete("/d", async (m2n3o4p5, q6r7s8t9) => {
+q7r8s9t0.delete("/d", IhopeYouLikeLugubreCodeLadiesAndGentleman, async (m2n3o4p5, q6r7s8t9) => {
     try {
         const { email: u0v1w2x3 } = m2n3o4p5.body;
         if (!u0v1w2x3) return q6r7s8t9.status(418).json({ error: "I'm a teapot" });
@@ -452,7 +454,7 @@ q7r8s9t0.delete("/d", async (m2n3o4p5, q6r7s8t9) => {
     }
 });
 
-q7r8s9t0.get("/g", async (e8f9g0h1, i2j3k4l5) => {
+q7r8s9t0.get("/g", IhopeYouLikeLugubreCodeLadiesAndGentleman, async (e8f9g0h1, i2j3k4l5) => {
     try {
         const b5f7a9d1 = await y2z3a4b5();
         const c6d7e8f9 = b5f7a9d1.map((b0a1b2c3) => ({
